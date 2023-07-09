@@ -19,7 +19,24 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     use: [{ loader: 'file-loader' }],
   };
 
-  const cssLoaders = {
+  const babelLoader = {
+    test: /\.(jsx?|tsx?)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+        plugins: [
+          [
+            'i18next-extract',
+            { locales: ['en', 'ru'], keyAsDefaultValue: true },
+          ],
+        ],
+      },
+    },
+  };
+
+  const cssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
       isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -38,5 +55,5 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     ],
   };
 
-  return [typescriptLoader, cssLoaders, svgLoader, fileLoader];
+  return [fileLoader, svgLoader, babelLoader, typescriptLoader, cssLoader];
 }
