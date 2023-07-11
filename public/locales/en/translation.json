@@ -4,5 +4,7 @@
   "О сайте": "About",
   "Страница не найдена": "Page not found",
   "Произошла непредвиденная ошибка": "Something went wrong",
-  "Обновить страницу": "Reload Page"
+  "Обновить страницу": "Reload Page",
+  "Тест ошибки": "Throw error",
+  "Переключить": "Toggle"
 }
