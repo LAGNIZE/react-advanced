@@ -8,11 +8,6 @@ interface LoginByUserNameProps {
     password: string
 }
 
-enum LoginErrors {
-  INCORRECT_DATA = '',
-  SERVER_ERROR = ''
-}
-
 export const loginByUsername = createAsyncThunk<User, LoginByUserNameProps, { rejectValue: string}>('login', async ({ username, password }, thunkAPI) => {
   try {
     const response = await axios.post<User>('http://localhost:8000/login', {
